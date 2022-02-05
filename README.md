@@ -41,3 +41,5 @@ private:
         void WriteRuntimeErrorToLogFile(const std::string &);
 };
 ```
+
+Log file library and it's deployment is dependent on Windows operating system.

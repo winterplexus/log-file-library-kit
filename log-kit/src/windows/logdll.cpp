@@ -1,10 +1,10 @@
 //
 //  @(#)logdll.cpp
 //
-//  liblog - log file DLL entry point
+// log-kit - log file DLL entry point
 //  ---------------------------------
 //
-//  copyright 2010-2019 Code Construct Systems (CCS)
+//  copyright 2010-2022 Code Construct Systems (CCS)
 //
 #define WIN32_LEAN_AND_MEAN
 
