@@ -8,18 +8,26 @@
 //
 #include <iostream>
 #include <string>
-#include "log-file.h"
+#include "logfile.h"
+
+static void ProcessLogFile(const char *);
+static void DisplayOptionsUsage(void);
 
 int main(int argc, char **argv) {
     if (argc == 1) {
-        std::cout << "usage: log-file-test.exe [log file path name]]" << std::endl;
-        return (0);
+        DisplayOptionsUsage();
     }
+    else {
+        ProcessLogFile(argv[1]);
+    }
+    return (EXIT_SUCCESS);
+}
 
+static void ProcessLogFile(const char *log_file_path_name) {
     LogFile *logfile = NULL;
 
     try {
-        logfile = new LogFile(argv[1]);
+        logfile = new LogFile(std::string(log_file_path_name));
         logfile->SetDateTimeFormat("%Y-%m-%d - %H:%M:%S");
         logfile->WriteTraceLog("trace message");
         logfile->WriteDebugLog("debug message");
@@ -33,6 +41,8 @@ int main(int argc, char **argv) {
     }
 
     delete logfile;
+}
 
-    return (0);
+static void DisplayOptionsUsage(void) {
+    std::cout << "usage: log-file-text.exe [log file path name]" << std::endl << std::endl;
 }

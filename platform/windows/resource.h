@@ -1,6 +1,7 @@
 //{{NO_DEPENDENCIES}}
 // Microsoft Visual C++ generated include file.
-// Used by log-file.rc
+// Used by logfile.rc
+//
 
 // Next default values for new objects
 // 

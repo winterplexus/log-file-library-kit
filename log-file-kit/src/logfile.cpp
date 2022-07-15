@@ -1,26 +1,25 @@
 //
-//  @(#)log-file.cpp
+//  @(#)logfile.cpp
 //
-//  log file kit - log file
-//  -----------------------
+//  log file kit - log file class
+//  -----------------------------
 //
 //  copyright 2014-2022 Code Construct Systems (CCS)
 //
-#define WIN32_LEAN_AND_MEAN
-
+#include <cstring>
 #include <fstream>
 #include <iostream>
 #include <sstream>
 #include <errno.h>
 #include <time.h>
-#include <windows.h>
-#include "log-file.h"
+#include "logfile.h"
+#include "logmutex.h"
 #include "port.h"
 
-CRITICAL_SECTION log_critical_section;
+MUTEX_CRITICAL_SECTION;
 
 LogFile::LogFile(const std::string &file_name) {
-    InitializeCriticalSection(&log_critical_section);
+    MUTEX_CRITICAL_SECTION_INIT;
 
     if (!file_name.empty()) {
         log_file_name = file_name;
@@ -31,7 +30,7 @@ LogFile::LogFile(const std::string &file_name) {
 }
 
 LogFile::LogFile(const std::string &file_name, const std::string &date_time_format) {
-    InitializeCriticalSection(&log_critical_section);
+    MUTEX_CRITICAL_SECTION_INIT;
 
     if (!file_name.empty()) {
         log_file_name = file_name;
@@ -48,14 +47,14 @@ LogFile::LogFile(const std::string &file_name, const std::string &date_time_form
 }
 
 LogFile::LogFile(LogFile const &log) {
-    InitializeCriticalSection(&log_critical_section);
+    MUTEX_CRITICAL_SECTION_INIT;
 
     log_file_name = std::string(log_file_name);
     log_date_time_format = std::string(log_date_time_format);
 }
 
 LogFile::~LogFile(void) {
-    DeleteCriticalSection(&log_critical_section);
+    MUTEX_CRITICAL_SECTION_DESTROY;
 }
 
 void LogFile::SetFileName(const std::string &file_name) {
@@ -103,13 +102,13 @@ void LogFile::WriteFatalLog(const std::string &fatal_message) {
 }
 
 void LogFile::WriteEntryToLogFile(const std::string &entry) {
-    EnterCriticalSection(&log_critical_section);
+    MUTEX_CRITICAL_SECTION_LOCK;
 
     std::string log_fname = std::string(std::string(log_file_name) + "." + GetSystemDate() + ".log");
     std::ofstream log_file(log_fname.c_str(), std::ios::app);
 
     if (!log_file.is_open()) {
-        LeaveCriticalSection(&log_critical_section);
+        MUTEX_CRITICAL_SECTION_UNLOCK;
         return;
     }
 
@@ -117,17 +116,17 @@ void LogFile::WriteEntryToLogFile(const std::string &entry) {
     log_file.flush();
     log_file.close();
 
-    LeaveCriticalSection(&log_critical_section);
+    MUTEX_CRITICAL_SECTION_UNLOCK;
 }
 
 void LogFile::WriteRuntimeErrorToLogFile(const std::string &runtime_error) {
-    EnterCriticalSection(&log_critical_section);
+    MUTEX_CRITICAL_SECTION_LOCK;
 
     std::string log_fname = std::string(std::string(log_file_name) + std::string(".") + GetSystemDate() + ".log");
     std::ofstream log_file(log_fname.c_str(), std::ios::app);
 
     if (!log_file.is_open()) {
-        LeaveCriticalSection(&log_critical_section);
+        MUTEX_CRITICAL_SECTION_UNLOCK;
         return;
     }
 
@@ -135,7 +134,7 @@ void LogFile::WriteRuntimeErrorToLogFile(const std::string &runtime_error) {
     log_file.flush();
     log_file.close();
 
-    LeaveCriticalSection(&log_critical_section);
+    MUTEX_CRITICAL_SECTION_UNLOCK;
 }
 
 std::string LogFile::GetSystemDate() {

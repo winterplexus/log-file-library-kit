@@ -80,11 +80,13 @@
     <LinkIncremental>true</LinkIncremental>
     <OutDir>$(SolutionDir)$(Platform)\$(Configuration)\log-file\</OutDir>
     <IntDir>$(Platform)\$(Configuration)\log-file\</IntDir>
+    <TargetName>logfile</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
     <OutDir>$(SolutionDir)$(Platform)\$(Configuration)\log-file\</OutDir>
     <IntDir>$(Platform)\$(Configuration)\log-file\</IntDir>
+    <TargetName>logfile</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -124,7 +126,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_LIB;_SCL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;_LIB;_SCL;_WINDOWS_ENVIRONMENT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
@@ -135,9 +137,9 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <PostBuildEvent>
-      <Command>copy x64\Debug\log-file\log-file.lib ..\..\log-kit\lib
-copy ..\..\log-kit\src\log-file.h ..\..\log-kit\inc
-copy ..\..\log-kit\src\log-file.h ..\..\log-kit\test</Command>
+      <Command>copy ..\..\log-file-kit\src\logfile.h ..\..\log-file-kit\inc
+copy x64\debug\log-file\logfile.lib ..\..\log-file-kit\lib
+</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -146,7 +148,7 @@ copy ..\..\log-kit\src\log-file.h ..\..\log-kit\test</Command>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>NDEBUG;_LIB;_SCL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NDEBUG;_LIB;_SCL;_WINDOWS_ENVIRONMENT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
@@ -159,22 +161,23 @@ copy ..\..\log-kit\src\log-file.h ..\..\log-kit\test</Command>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <PostBuildEvent>
-      <Command>copy x64\Release\log-file\log-file.lib ..\..\log-kit\lib
-copy ..\..\log-kit\src\log-file.h ..\..\log-kit\inc
-copy ..\..\log-kit\src\log-file.h ..\..\log-kit\test</Command>
+      <Command>copy ..\..\log-file-kit\src\logfile.h ..\..\log-file-kit\inc
+copy x64\release\log-file\logfile.lib ..\..\log-file-kit\lib</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\log-kit\src\log-file.cpp" />
-    <ClCompile Include="..\..\log-kit\src\port.cpp" />
+    <ClCompile Include="..\..\log-file-kit\src\logfile.cpp" />
+    <ClCompile Include="..\..\log-file-kit\src\port.cpp" />
+    <ClCompile Include="..\..\log-file-kit\src\version.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\log-kit\src\log-file.h" />
-    <ClInclude Include="..\..\log-kit\src\port.h" />
+    <ClInclude Include="..\..\log-file-kit\src\logfile.h" />
+    <ClInclude Include="..\..\log-file-kit\src\logmutex.h" />
+    <ClInclude Include="..\..\log-file-kit\src\port.h" />
     <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="log-file.rc" />
+    <ResourceCompile Include="logfile.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

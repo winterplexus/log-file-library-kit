@@ -1,17 +1,14 @@
 //
-//  @(#)log-file.h
+//  @(#)logfile.h
 //
-//  log file kit - log file
-//  -----------------------
+//  log file kit - log file class
+//  -----------------------------
 //
 //  copyright 2014-2022 Code Construct Systems (CCS)
 //
-#ifndef __LOG_H
-#define __LOG_H
+#ifndef __LOGFILE_H
+#define __LOGFILE_H
 
-#define WIN32_LEAN_AND_MEAN
-
-#include <windows.h>
 #include <string>
 
 class LogFile {
@@ -38,4 +35,4 @@ private:
         std::string GetSystemDateTime();
 };
 
-#endif // __LOG_H
+#endif // __LOGFILE_H

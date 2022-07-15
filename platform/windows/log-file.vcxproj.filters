@@ -15,18 +15,24 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\log-kit\src\log-file.cpp">
+    <ClCompile Include="..\..\log-file-kit\src\logfile.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\log-kit\src\port.cpp">
+    <ClCompile Include="..\..\log-file-kit\src\port.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\log-file-kit\src\version.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\log-kit\src\log-file.h">
+    <ClInclude Include="..\..\log-file-kit\src\logfile.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\log-kit\src\port.h">
+    <ClInclude Include="..\..\log-file-kit\src\logmutex.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\log-file-kit\src\port.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="resource.h">
@@ -34,7 +40,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="log-file.rc">
+    <ResourceCompile Include="logfile.rc">
       <Filter>Resource Files</Filter>
     </ResourceCompile>
   </ItemGroup>

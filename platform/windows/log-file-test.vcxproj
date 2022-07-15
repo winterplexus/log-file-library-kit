@@ -74,6 +74,7 @@
     <LinkIncremental>true</LinkIncremental>
     <OutDir>$(SolutionDir)$(Platform)\$(Configuration)\log-file-test\</OutDir>
     <IntDir>$(Platform)\$(Configuration)\log-file-test\</IntDir>
+    <TargetName>logfile-test</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
@@ -85,6 +86,7 @@
     <LinkIncremental>false</LinkIncremental>
     <OutDir>$(SolutionDir)$(Platform)\$(Configuration)\log-file-test\</OutDir>
     <IntDir>$(Platform)\$(Configuration)\log-file-test\</IntDir>
+    <TargetName>logfile-test</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -153,15 +155,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\log-kit\test\log-file-test.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="..\..\log-kit\test\log-file.h" />
+    <ClCompile Include="..\..\log-file-kit\test\logfile-test.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="log-file.vcxproj">
       <Project>{44f7f041-d5c9-483e-9b86-abd2880caa2d}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\log-file-kit\inc\logfile.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
