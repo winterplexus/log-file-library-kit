@@ -1,45 +1,36 @@
 Log File Library Kit for C++
 ============================
 
-Log file library kit based on C++ for implementing Windows-based DLL (dynamic-link library).
+Log file library kit based on C++ for implementing either Linux or Windows static library.
 
-The kit includes the following component:
+The kit includes the following component(s):
 
 * Log file C++ class:
 
 ```
-#define WIN32_LEAN_AND_MEAN
-
-#include <windows.h>
 #include <string>
 
-#ifdef  LOG_FILE_DLL_EXPORTS
-#define LOG_FILE_API __declspec(dllexport)
-#else
-#define LOG_FILE_API __declspec(dllimport)
-#endif
-
-class LOG_FILE_API LogFile {
+class LogFile {
 public:
-        LogFile(void);
-        LogFile(const std::string &file_name);
+        LogFile(const std::string &);
+        LogFile(const std::string &, const std::string &);
         LogFile(LogFile const &);
        ~LogFile(void);
         void SetFileName(const std::string &);
         void SetDateTimeFormat(const std::string &);
-        void WriteTraceLog(const std::string &);
         void WriteDebugLog(const std::string &);
         void WriteInformationLog(const std::string &);
         void WriteWarningLog(const std::string &);
         void WriteErrorLog(const std::string &);
-        void WriteFatalLog(const std::string &);
-
+private:
+        std::string log_file_name = std::string("log-file");
+        std::string log_date_time_format = std::string("%Y-%m-%d %H:%M:%S");
 private:
         void WriteEntryToLogFile(const std::string &);
+        void WriteRuntimeErrorToLogFile(const std::string &);
         std::string GetSystemDate();
         std::string GetSystemDateTime();
-        void WriteRuntimeErrorToLogFile(const std::string &);
 };
 ```
 
-Log file library and it's deployment is dependent on Windows operating system.
+Log file library is supported on Linux and Windows operating systems.

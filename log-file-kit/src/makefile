@@ -4,9 +4,9 @@
 #                                                                              #
 # log-file library                                                             #
 #                                                                              #
-# version 2.0.0 release 1                                                      #
+# version 4.0.0 release 1                                                      #
 #                                                                              #
-# copyright (c) 2014-2022 Code Construct Systems (CCS) [CONFIDENTIAL]          #
+# copyright (c) 2014-2024 Code Construct Systems (CCS) [CONFIDENTIAL]          #
 #                                                                              #
 ################################################################################
 
